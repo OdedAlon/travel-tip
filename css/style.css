@@ -50,10 +50,7 @@ body {
 
 .location {
   background: #CCD8DC;
-  background: rgba(204, 216, 220, 1);
-  opacity: 0.29;
-  width : 240px;
-  height : 98px;
+  background: rgba(204, 216, 220, 0.433);
   border-radius: 6px;
   padding: 10px;
   margin: 5px;;

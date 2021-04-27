@@ -12,6 +12,7 @@ function onInit() {
                 console.log(mapsMouseEvent.latLng) // Get the 'latLng'.
                 mapService.addMarker(mapsMouseEvent.latLng);
                 locService.createLoc(mapsMouseEvent.latLng);
+                renderlist()
             })
         })
         .catch(() => console.log('Error: cannot init map'));
@@ -70,22 +71,22 @@ function getPosition() {
     })
 }
 
-
-function onGetLocation(){
-    getLocation()
-}
-
-
 function renderlist() {
-    var locs = getLocs();
-    var strHtmls = locs.map(function (loc) {
-        return `
-     <p>name:${loc.name}</p>
-     <p>lat:${loc.lat}</p>
-     <p>lng:${loc.lng}</p>
-     <p>weather:${loc.weather}</p>
-     <p>created:${loc.created}</p>
-     <p>update:${loc.update}</p>
-        `})
-      document.querySelector('.list-location').innerHTML = strHtmls.join('');
+    locService.getLocs()
+            .then(locs => {
+                console.log('position is'+locs)
+                var strHtmls = locs.map(function (loc) {
+                    return ` 
+                    <div class="location">
+                 <p>name:${loc.name}</p>
+                 <p>lat:${loc.lat}</p>
+                 <p>lng:${loc.lng}</p>
+                 <p>weather:${loc.weather}</p>
+                 <p>created:${loc.createdAt}</p>
+                 <p>update:${loc.updatedAt}</p>
+                 </div>
+                    `})
+                  document.querySelector('.locations').innerHTML = strHtmls.join('');
+            })
+    
 }
