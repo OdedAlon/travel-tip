@@ -28,7 +28,7 @@ function addEventListenrs() {
         console.log('Adding a marker');
         mapService.addMarker({ lat: 32.0759914, lng: 34.9120554 });
     })
-   
+
     document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
         getPosition()
     })
@@ -55,37 +55,24 @@ function addEventListenrs() {
         onCopyLoc();
     })
 
-
-
-
 }
 
 
-  function showPosition(position) {
-    mapService.initMap(position.coords.latitude,position.coords.longitude)
-}
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
-    console.log('my pos')
-    navigator.geolocation.watchPosition(showPosition);
-
-   
-   
-    // console.log('Getting Pos');
-    // // mapService.getLocation()
-    // return new Promise((resolve, reject) => {
-    //     navigator.geolocation.getCurrentPosition(resolve, reject)
-    // })
+    navigator.geolocation.getCurrentPosition(pos => {
+        mapService.panTo(pos.coords.latitude, pos.coords.longitude)
+    });
 }
 
 function renderlist() {
     locService.getLocs()
-            .then(locs => {
-                console.log('position is'+locs)
-                var strHtmls = locs.map(function (loc) {
-                    return ` 
-                    <div class="location">
+        .then(locs => {
+            console.log('position is' + locs)
+            var strHtmls = locs.map(function (loc) {
+                return ` 
+                  <div class="location">
                  <p>name:${loc.name}</p>
                  <p>lat:${loc.lat}</p>
                  <p>lng:${loc.lng}</p>
@@ -94,7 +81,7 @@ function renderlist() {
                  <p>update:${loc.updatedAt}</p>
                  </div>
                     `})
-                  document.querySelector('.locations').innerHTML = strHtmls.join('');
-            })
-    
+            document.querySelector('.locations').innerHTML = strHtmls.join('');
+        })
+
 }

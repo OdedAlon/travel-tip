@@ -7,13 +7,13 @@ export const locService = {
     createLoc
 }
 
-var locs = storageService.loadFromStorage(KEY);
-if (locs === null) {
+var locs; // = storageService.loadFromStorage(KEY);
+// if (locs === null) {
     locs = [
         { id: '01', name: 'Loc1', lat: 32.047104, lng: 34.832384, weather: '', createdAt: '', updatedAt: ''}, 
         { id: '02', name: 'Loc2', lat: 32.047104, lng: 34.832384, weather: '', createdAt: '', updatedAt: ''}
     ]
-}
+
 
 function getLocs() {
     return new Promise((resolve, reject) => {
