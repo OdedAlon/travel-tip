@@ -6,8 +6,11 @@ window.onload = onInit;
 function onInit() {
     addEventListenrs();
     mapService.initMap()
-        .then(() => {
-            console.log('Map is ready');
+        .then((gMap) => {
+            console.log(gMap);
+            gMap.addListener("click", (mapsMouseEvent) => {
+                console.log(mapsMouseEvent) //                  <-- HERE you can get 'latLng'.
+            })
         })
         .catch(() => console.log('Error: cannot init map'));
 }
@@ -40,8 +43,22 @@ function addEventListenrs() {
                 console.log('err!!!', err);
             })
     })
+   
+    // mapService.gMap.addEventListener('click', (ev) => {
+    //     console.log(ev.latLng)
+    // })
+    // const map = new google.maps.Map(document.getElementById("map")
+    // map.addListener("click", (mapsMouseEvent) => {
+    //     // Create a new InfoWindow.
+    //     infoWindow = new google.maps.InfoWindow({
+    //       position: mapsMouseEvent.latLng,
+    //     });
+    //     infoWindow.setContent(
+    //       JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+    //     );
+    //     infoWindow.open(map);
+    //   });
 }
-
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
