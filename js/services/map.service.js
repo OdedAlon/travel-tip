@@ -1,16 +1,13 @@
-
-
 export const mapService = {
     initMap,
     addMarker,
     panTo,
-    gMap: gMap,
+    getPos
 }
 
 var gMap;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-  
     console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
@@ -21,17 +18,15 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 zoom: 15
             })
             console.log('Map!', gMap);
-           
             return gMap
         })
-        
 }
 
-function addMarker(loc) {
+function addMarker(loc, name) {
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
-        title: 'Hello World!'
+        title: name
     });
     return marker;
 }
@@ -39,9 +34,14 @@ function addMarker(loc) {
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
-    console.log(laLatLng)
+    console.log(gMap)
 }
 
+function getPos() {
+    let lat = JSON.parse(JSON.stringify(gMap.center.toJSON(), null, 2)).lat;
+    let lng = JSON.parse(JSON.stringify(gMap.center.toJSON(), null, 2)).lng;
+    return {lat, lng}
+}
 
 
 function _connectGoogleApi() {
@@ -57,5 +57,3 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }   
-
-

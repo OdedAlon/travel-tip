@@ -1,18 +1,23 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
-
 window.onload = onInit;
 
 function onInit() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const myParam = urlParams.get('myParam');
+    console.log(urlParams)
     addEventListenrs();
     mapService.initMap()
         .then((gMap) => {
             console.log(gMap);
             gMap.addListener("click", (mapsMouseEvent) => {
                 console.log(mapsMouseEvent.latLng) // Get the 'latLng'.
-                mapService.addMarker(mapsMouseEvent.latLng);
-                locService.createLoc(mapsMouseEvent.latLng);
+                let locName = locService.createLoc(mapsMouseEvent.latLng);
+                mapService.addMarker(mapsMouseEvent.latLng, locName);
                 renderlist()
             })
         })
@@ -52,12 +57,21 @@ function addEventListenrs() {
             })
     })
     document.querySelector('.btn-copy-loc').addEventListener('click', (ev) => {
-        onCopyLoc();
+        let loc = mapService.getPos()
+        // let url = `https://github.io/odedalon/travel-tip/index.html?lat=${loc.lat}&lng=${loc.lng}`
+        let url = `https://odedalon.github.io/travel-tip/?lat=${loc.lat}&lng=${loc.lng}`
+        onCopyLoc(url);
     })
 
 }
 
-
+function onCopyLoc(newClip) {
+    navigator.clipboard.writeText(newClip).then(function () {
+        /* clipboard successfully set */
+    }, function () {
+        /* clipboard write failed */
+    });
+}
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
@@ -83,5 +97,4 @@ function renderlist() {
                     `})
             document.querySelector('.locations').innerHTML = strHtmls.join('');
         })
-
 }

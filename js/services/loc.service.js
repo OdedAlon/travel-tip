@@ -37,5 +37,6 @@ function createLoc(latLng) {
     locs.push(loc);
     saveLocs();
     console.log(locs)
+    return name;
 }
 
