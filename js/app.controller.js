@@ -58,7 +58,6 @@ function addEventListenrs() {
     })
     document.querySelector('.btn-copy-loc').addEventListener('click', (ev) => {
         let loc = mapService.getPos()
-        // let url = `https://github.io/odedalon/travel-tip/index.html?lat=${loc.lat}&lng=${loc.lng}`
         let url = `https://odedalon.github.io/travel-tip/?lat=${loc.lat}&lng=${loc.lng}`
         onCopyLoc(url);
     })
