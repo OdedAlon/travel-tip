@@ -38,3 +38,4 @@ function createLoc(latLng) {
     saveLocs();
     console.log(locs)
 }
+

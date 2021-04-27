@@ -28,6 +28,10 @@ function addEventListenrs() {
         console.log('Adding a marker');
         mapService.addMarker({ lat: 32.0759914, lng: 34.9120554 });
     })
+   
+    document.querySelector('.btn-my-location').addEventListener('click', (ev) => {
+        getPosition()
+    })
     document.querySelector('.btn-get-locs').addEventListener('click', (ev) => {
         locService.getLocs()
             .then(locs => {
@@ -50,14 +54,29 @@ function addEventListenrs() {
     document.querySelector('.btn-copy-loc').addEventListener('click', (ev) => {
         onCopyLoc();
     })
+
+
+
+
+}
+
+
+  function showPosition(position) {
+    mapService.initMap(position.coords.latitude,position.coords.longitude)
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
-    console.log('Getting Pos');
-    return new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject)
-    })
+    console.log('my pos')
+    navigator.geolocation.watchPosition(showPosition);
+
+   
+   
+    // console.log('Getting Pos');
+    // // mapService.getLocation()
+    // return new Promise((resolve, reject) => {
+    //     navigator.geolocation.getCurrentPosition(resolve, reject)
+    // })
 }
 
 function renderlist() {
