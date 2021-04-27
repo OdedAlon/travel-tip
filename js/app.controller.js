@@ -1,6 +1,7 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
+
 window.onload = onInit;
 function onInit() {
     addEventListenrs();
@@ -8,7 +9,9 @@ function onInit() {
         .then((gMap) => {
             console.log(gMap);
             gMap.addListener("click", (mapsMouseEvent) => {
-                console.log(mapsMouseEvent) //                  <-- HERE you can get 'latLng'.
+                console.log(mapsMouseEvent.latLng) // Get the 'latLng'.
+                mapService.addMarker(mapsMouseEvent.latLng);
+                locService.createLoc(mapsMouseEvent.latLng);
             })
         })
         .catch(() => console.log('Error: cannot init map'));
@@ -21,7 +24,7 @@ function addEventListenrs() {
     })
     document.querySelector('.btn-add-marker').addEventListener('click', (ev) => {
         console.log('Adding a marker');
-        mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+        mapService.addMarker({ lat: 32.0759914, lng: 34.9120554 });
     })
     document.querySelector('.btn-get-locs').addEventListener('click', (ev) => {
         locService.getLocs()
