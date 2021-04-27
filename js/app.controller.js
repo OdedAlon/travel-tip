@@ -66,9 +66,9 @@ function addEventListenrs() {
 
 function onCopyLoc(newClip) {
     navigator.clipboard.writeText(newClip).then(function () {
-        /* clipboard successfully set */
+        alert('URL copied to clipboard.');
     }, function () {
-        /* clipboard write failed */
+        alert('Cannot copy URL.');
     });
 }
 
