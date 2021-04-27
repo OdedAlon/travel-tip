@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: textregular;
+  src: url(../fonts/sf-pro-text_regular.woff2);
+}
+
+@font-face {
+  font-family: textbold;
+  src: url(../fonts/sf-pro-text_semibold.woff2);
+}
+
+@font-face {
+  font-family: title;
+  src: url(../fonts/sf-pro-display_bold.woff2);
+}
+
+body {
+  background: linear-gradient(0deg, rgba(69, 95, 232, 1) 0%, rgba(101, 53, 179, 1) 100%);
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  font-family:title;
+}
+
+.main-continer {
+  padding: 30px;;
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+  height: 605px;
+  width: 827px;
+  margin-top: 50px;
+  margin-bottom: 6 00px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(209, 218, 255, 1) 100%);
+  opacity: 0.92;
+}
+
+.hidden {
+  display: none;
+}
+
+.location {
+  background: #CCD8DC;
+  background: rgba(204, 216, 220, 1);
+  opacity: 0.29;
+  width : 240px;
+  height : 98px;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 5px;;
+}
+
+p{
+  font-size: 15px;
+  
+}
+
+.map-continer {
+  width: 880px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(209, 218, 255, 1) 100%);
+  opacity: 0.92;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.map-continer>*{
+  margin-top: 8px;
+}
+.map-btn {
+  /* position: absolute;
+  right: 50px;
+  top: 0px; */
+
+}
+
+
+.map-border{
+  padding: 13px;
+  background : linear-gradient(90deg, rgba(69, 95, 232, 1) 0%, rgba(98, 57, 184, 1) 100%);
+  width: 350px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button{
+    background : linear-gradient(90deg, rgba(69, 96, 232, 0.35) 0%, rgba(97, 57, 184, 0.323) 100%);
+    padding: 8px;
+    border-radius : 6px;
+    border-style: hidden;
+    font-family:title;
+    
+}
+input{
+  background : linear-gradient(90deg, rgba(69, 96, 232, 0.35) 0%, rgba(97, 57, 184, 0.323) 100%);
+  padding: 8px;
+  border-radius : 6px;
+  border-style: hidden;
+}
+
+.weather{
+  background : linear-gradient(90deg, rgba(69, 95, 232, 1) 0%, rgba(98, 57, 184, 1) 100%);
+  width : 240px;
+  height : 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  color:white;
+}

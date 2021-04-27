@@ -2,7 +2,6 @@ import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
 window.onload = onInit;
-
 function onInit() {
     addEventListenrs();
     mapService.initMap()
@@ -68,3 +67,22 @@ function getPosition() {
     })
 }
 
+
+function onGetLocation(){
+    getLocation()
+}
+
+
+function renderlist() {
+    var locs = getLocs();
+    var strHtmls = locs.map(function (loc) {
+        return `
+     <p>name:${loc.name}</p>
+     <p>lat:${loc.lat}</p>
+     <p>lng:${loc.lng}</p>
+     <p>weather:${loc.weather}</p>
+     <p>created:${loc.created}</p>
+     <p>update:${loc.update}</p>
+        `})
+      document.querySelector('.list-location').innerHTML = strHtmls.join('');
+}
