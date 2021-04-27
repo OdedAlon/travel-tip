@@ -3,6 +3,7 @@ import { mapService } from './services/map.service.js'
 
 
 window.onload = onInit;
+
 function onInit() {
     addEventListenrs();
     mapService.initMap()
@@ -46,21 +47,9 @@ function addEventListenrs() {
                 console.log('err!!!', err);
             })
     })
-   
-    // mapService.gMap.addEventListener('click', (ev) => {
-    //     console.log(ev.latLng)
-    // })
-    // const map = new google.maps.Map(document.getElementById("map")
-    // map.addListener("click", (mapsMouseEvent) => {
-    //     // Create a new InfoWindow.
-    //     infoWindow = new google.maps.InfoWindow({
-    //       position: mapsMouseEvent.latLng,
-    //     });
-    //     infoWindow.setContent(
-    //       JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-    //     );
-    //     infoWindow.open(map);
-    //   });
+    document.querySelector('.btn-copy-loc').addEventListener('click', (ev) => {
+        onCopyLoc();
+    })
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
