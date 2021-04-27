@@ -4,12 +4,9 @@ import { mapService } from './services/map.service.js'
 window.onload = onInit;
 
 function onInit() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-
     // const urlParams = new URLSearchParams(window.location.search);
     // const myParam = urlParams.get('myParam');
-    console.log(urlParams)
+    
     addEventListenrs();
     mapService.initMap()
         .then((gMap) => {
@@ -19,6 +16,12 @@ function onInit() {
                 let locName = locService.createLoc(mapsMouseEvent.latLng);
                 mapService.addMarker(mapsMouseEvent.latLng, locName);
                 renderlist()
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                console.log(urlParams)
+                const lat = urlParams.get('lat');
+                const lng = urlParams.get('lng');
+                mapService.panTo(lat, lng)
             })
         })
         .catch(() => console.log('Error: cannot init map'));
