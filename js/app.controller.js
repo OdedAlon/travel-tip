@@ -6,7 +6,7 @@ window.onload = onInit;
 function onInit() {
     // const urlParams = new URLSearchParams(window.location.search);
     // const myParam = urlParams.get('myParam');
-    
+    renderlist()
     addEventListenrs();
     mapService.initMap()
         .then((gMap) => {
@@ -15,7 +15,7 @@ function onInit() {
                 console.log(mapsMouseEvent.latLng) // Get the 'latLng'.
                 let locName = locService.createLoc(mapsMouseEvent.latLng);
                 mapService.addMarker(mapsMouseEvent.latLng, locName);
-                renderlist()
+                
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
                 console.log(urlParams)
